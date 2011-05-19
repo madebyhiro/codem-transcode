@@ -18,28 +18,56 @@ describe("A database handler", function() {
     var db = dbHandler.getDatabase(':memory:');
 
     var callbackSpy = jasmine.createSpy("callback");
-    var runSpy = jasmine.createSpy("run");
     
-    spyOn(db, 'prepare').andReturn({ run: runSpy });
+    spyOn(db, 'run');
     spyOn(Job, 'generateId').andReturn('the_id');
     
     var job = new Job({ foo: 'bar' });
     
     dbHandler.insertJob(job, callbackSpy);
     
-    expect(db.prepare).toHaveBeenCalledWith("INSERT INTO jobs VALUES (?,?,?,?,?,?,?,strftime('%s', 'now'),strftime('%s', 'now'))");
-    expect(runSpy).toHaveBeenCalled();
+    // Nasty expects due to JavaScript behaviour: [] != []
+    expect(db.run.mostRecentCall.args[0]).toEqual("INSERT INTO jobs VALUES (?,?,?,?,?,?,?,strftime('%s', 'now'),strftime('%s', 'now'))");
+    expect(db.run.mostRecentCall.args[1].toString()).toEqual('the_id,processing,NaN,NaN,NaN,{"foo":"bar"},');
+    expect(db.run.mostRecentCall.args[2]).toEqual(callbackSpy);
   });
   
   it("should be able to find a job", function() {
-    // pending
+    var db = dbHandler.getDatabase(':memory:');
+
+    var callbackSpy = jasmine.createSpy("callback");
+    
+    spyOn(db, 'get');
+    
+    dbHandler.getJob('123', callbackSpy);
+    
+    expect(db.get).toHaveBeenCalledWith('SELECT * FROM jobs WHERE id LIKE ? LIMIT 1', ['123'], callbackSpy);
   });
   
   it("should be able to update a job", function() {
-    // pending
+    var db = dbHandler.getDatabase(':memory:');
+
+    var callbackSpy = jasmine.createSpy("callback");
+    
+    spyOn(db, 'run');
+    spyOn(Job, 'generateId').andReturn('the_id');
+    
+    var job = new Job({ foo: 'bar' });
+    
+    dbHandler.updateJob(job, callbackSpy);
+    
+    // Nasty expects due to JavaScript behaviour: [] != []
+    expect(db.run.mostRecentCall.args[0]).toEqual("UPDATE jobs SET status=?, progress=?, duration=?, filesize=?, message=?, updated_at=strftime('%s', 'now') WHERE id LIKE ?");
+    expect(db.run.mostRecentCall.args[1].toString()).toEqual('processing,NaN,NaN,NaN,,the_id');
+    expect(db.run.mostRecentCall.args[2]).toEqual(callbackSpy);
   });
   
   it("should be able to close the database", function() {
-    // pending
+    var db = dbHandler.getDatabase(':memory:');
+    spyOn(db, 'close');
+    
+    dbHandler.closeDatabase();
+    
+    expect(db.close).toHaveBeenCalled();
   });
 });
