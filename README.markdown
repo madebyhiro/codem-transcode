@@ -10,7 +10,7 @@ Codem-transcode is an offline video transcoder written in node.js. It
 2. Has a simple HTTP API
 3. Is mostly asynchronous
 
-Codem-transcode can be used in conjunction with Codem-schedule (http://github.com/NPO/codem-schedule) for robust job scheduling and notifications or it can be used stand-alone, with or without a custom scheduler.
+Codem-transcode can be used in conjunction with Codem-schedule (https://github.com/NPO/codem-schedule) for robust job scheduling and notifications or it can be used stand-alone, with or without a custom scheduler.
 
 ## Requirements
 
@@ -24,18 +24,28 @@ Codem-transcode can be used in conjunction with Codem-schedule (http://github.co
 
 ## Installation
 
-Installation can be as simple as checking out the code and starting it using:
+The recommended installation procedure is to just use `npm` (http://npmjs.org/):
 
-    # node transcoder.js
+    # npm install codem-transcode
+
+Install it to your preferred location, or use the `-g` option to install it globally.
+
+## Starting
+
+When you install codem-transcode a script will be installed that allows you to start the transcoder. If you install it globally it should be in your `PATH`, otherwise, you can start the transcoder using:
+
+    # /PATH/TO/TRANSCODER/codem-transcode
     
+Please check for yourself where `npm` installs your packages and script.
+
 ## Configuration
 
-Configuration is done by specifying a CLI option and pointing to a file containing a valid JSON object (http://www.json.org/). Note that node.js' JSON parser is fairly strict so make sure you get the syntax right. An example config is:
+Configuration is done by specifying a CLI option (`-c`) and pointing to a file containing a valid JSON object (http://www.json.org/). Note that node.js' JSON parser is fairly strict so make sure you get the syntax right. An example config is:
 
     {
         "port":        8080,
         "access_log":  "/var/log/access_log",
-        "database":    "/var/transcode/jobs.db",
+        "database":    "/var/db/jobs.db",
         "slots":       8,
         "interface":   "127.0.0.1",
         "encoder":     "ffmpeg",
@@ -46,13 +56,15 @@ Configuration options:
 
 * `port`; port to start server on, default `8080`
 * `interface`; which network interface to listen on, default `127.0.0.1` (only `localhost`)
-* `access_log`; location to store HTTP access log, default `PATH_TO_TRANSCODER/access_log`
-* `database`; location to store sqlite jobs DB, default `PATH_TO_TRANSCODER/jobs.db`
+* `access_log`; location to store HTTP access log, default `/var/log/access_log`
+* `database`; location to store sqlite jobs DB, default `/var/db/jobs.db`
 * `slots`; number of transcoding slots to use (i.e. the maximum number of ffmpeg child processes), defaults to the number of CPUs/cores in your machine
 * `encoder`; path to the ffmpeg binary, if it is in your path specifying only `ffmpeg` is sufficient, defaults to `ffmpeg`
 * `scratch_dir`; temporary files are written here and moved into the destination directory after transcoding, defaults to `/tmp`
 
-Note that the default config will put the access_log and job database in the same directory as the source. If you wish to put these in a different location please supply your own config. 
+Note that the default config will put the access_log and job database in `/var/log` and `var/db/` respectively. If you wish to put these in a different location please supply your own config. You can start the transcoder with your custom config using:
+
+    # /PATH/TO/TRANSCODER/codem-transcode -c /PATH/TO/CONFIG/config.json
 
 ## Usage
 
