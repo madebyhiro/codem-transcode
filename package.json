@@ -1,0 +1,20 @@
+{
+  "name": "codem-transcode",
+  "description": "Offline video transcoding using ffmpeg, with a small HTTP API.",
+  "version": "0.1.0",
+  "homepage": "http://www.transcodem.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NPO/codem-transcode.git"
+  },
+  "bin": "./bin/codem-transcode",
+  "engines": {
+    "node": ">= 0.4"
+  },
+  "dependencies": {
+    "sqlite3": ">= 2.0.12",
+    "mkdirp": ">= 0.0.2",
+    "connect": ">= 1.4.1",
+    "argsparser": ">= 0.0.5"
+  }
+}
