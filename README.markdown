@@ -34,7 +34,7 @@ Install it to your preferred location, or use the `-g` option to install it glob
 
 When you install codem-transcode a script will be installed that allows you to start the transcoder. If you install it globally it should be in your `PATH`, otherwise, you can start the transcoder using:
 
-    # /PATH/TO/TRANSCODER/codem-transcode
+    # /PATH/TO/TRANSCODER/bin/codem-transcode
     
 Please check for yourself where `npm` installs your packages and script.
 
@@ -64,7 +64,7 @@ Configuration options:
 
 Note that the default config will put the access_log and job database in `/var/log` and `var/db/` respectively. If you wish to put these in a different location please supply your own config. You can start the transcoder with your custom config using:
 
-    # /PATH/TO/TRANSCODER/codem-transcode -c /PATH/TO/CONFIG/config.json
+    # /PATH/TO/TRANSCODER/bin/codem-transcode -c /PATH/TO/CONFIG/config.json
 
 ## Usage
 
