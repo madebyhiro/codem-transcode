@@ -1,7 +1,7 @@
 {
   "name": "codem-transcode",
   "description": "Offline video transcoding using ffmpeg, with a small HTTP API.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "http://www.transcodem.com/",
   "repository": {
     "type": "git",
@@ -17,8 +17,8 @@
     "connect": ">= 1.4.1",
     "argsparser": ">= 0.0.5"
   },
-  "licenses": {
+  "licenses": [{
     "type": "MIT",
     "url": "https://github.com/NPO/codem-transcode/blob/master/LICENSE.txt"
-  }
+  }]
 }
