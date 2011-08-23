@@ -106,6 +106,16 @@ Responses:
 * `404 Not Found` - Job not found
 
 * * *
+Request: `DELETE /jobs/$JOB_ID`
+
+Cancels the job (if it is running) and deletes it from the database.
+
+Responses:
+
+* `200 OK` - Returns last known status of the job that is being deleted
+* `404 Not Found` - Job not found
+
+* * *
 ## Examples
 
 Create a new job, transcode "video.wmv" to "video.mp4" using the specified ffmpeg options (96kbit/s audio, 416kbit/s video, 320x180, use as much threads as possible). Requires libx264 support in your ffmpeg.
