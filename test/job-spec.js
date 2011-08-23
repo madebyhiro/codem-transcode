@@ -45,12 +45,13 @@ describe("A job", function() {
   });
 
   describe("when finding", function() {
-    it("should return the job", function() {
+    it("should call the dbhandler", function() {
       spyOn(dbHandler, "getJob");
+      var callbackSpy = jasmine.createSpy("callback");
+      
+      Job.find('1234', callbackSpy);
 
-      Job.find('1234');
-
-      expect(dbHandler.getJob).toHaveBeenCalledWith('1234', undefined);
+      expect(dbHandler.getJob).toHaveBeenCalled();
     });
   });
 
