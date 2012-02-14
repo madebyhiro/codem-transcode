@@ -1,6 +1,6 @@
 # Codem-transcode
 
-* http://github.com/NPO/codem-transcode
+* http://github.com/madebyhiro/codem-transcode
 
 ## Description
 
@@ -10,7 +10,7 @@ Codem-transcode is an offline video transcoder written in node.js. It
 2. Has a simple HTTP API
 3. Is mostly asynchronous
 
-Codem-transcode can be used in conjunction with Codem-schedule (https://github.com/NPO/codem-schedule) for robust job scheduling and notifications or it can be used stand-alone, with or without a custom scheduler.
+Codem-transcode can be used in conjunction with Codem-schedule (https://github.com/madebyhiro/codem-schedule) for robust job scheduling and notifications or it can be used stand-alone, with or without a custom scheduler.
 
 ## Requirements
 
