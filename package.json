@@ -1,21 +1,22 @@
 {
   "name": "codem-transcode",
   "description": "Offline video transcoding using ffmpeg, with a small HTTP API.",
-  "version": "0.2.2",
+  "version": "0.3.0",
+  "keywords": ["transcoding", "ffmpeg", "video"],
   "homepage": "http://www.transcodem.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/madebyhiro/codem-transcode.git"
   },
-  "bin": "./bin/codem-transcode",
+  "bin": { "codem-transcode": "./bin/codem-transcode" },
   "engines": {
-    "node": ">= 0.4"
+    "node": "~0.6.13"
   },
   "dependencies": {
-    "sqlite3": ">= 2.0.12",
-    "mkdirp": ">= 0.0.2",
-    "connect": ">= 1.4.1",
-    "argsparser": ">= 0.0.5"
+    "sqlite3": "~2.1.1",
+    "mkdirp": "~0.3.0",
+    "express": "~2.5.8",
+    "argsparser": "~0.0.6"
   },
   "licenses": [{
     "type": "MIT",

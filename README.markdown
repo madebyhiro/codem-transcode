@@ -14,11 +14,11 @@ Codem-transcode can be used in conjunction with Codem-schedule (https://github.c
 
 ## Requirements
 
-* ffmpeg (compiled/configured to your own taste)
+* ffmpeg (at least 0.10 and compiled/configured to your own taste)
 * sqlite3
-* node.js version >= 0.4.x, with packages (if you use npm they will be installed automatically):
+* node.js version 0.6.x, with packages (if you use npm they will be installed automatically):
     * sqlite3 (http://github.com/developmentseed/node-sqlite3)
-    * connect (http://github.com/senchalabs/Connect)
+    * express (http://expressjs.com/)
     * argsparser (http://github.com/kof/node-argsparser)
     * mkdirp (https://github.com/substack/node-mkdirp)
 
