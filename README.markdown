@@ -49,7 +49,8 @@ Configuration is done by specifying a CLI option (`-c`) and pointing to a file c
         "slots":       8,
         "interface":   "127.0.0.1",
         "encoder":     "ffmpeg",
-        "scratch_dir": "/tmp"
+        "scratch_dir": "/tmp",
+        "use_scratch_dir": true
     }
 
 Configuration options:
@@ -61,6 +62,7 @@ Configuration options:
 * `slots`; number of transcoding slots to use (i.e. the maximum number of ffmpeg child processes), defaults to the number of CPUs/cores in your machine
 * `encoder`; path to the ffmpeg binary, if it is in your path specifying only `ffmpeg` is sufficient, defaults to `ffmpeg`
 * `scratch_dir`; temporary files are written here and moved into the destination directory after transcoding, defaults to `/tmp`
+* `use_scratch_dir`; if set to false temporary files will be written to the output directory of your job, for setups that don't require or are not able to use a separate `scratch_dir`. Defaults to `true` so if you don't want to disable the `scratch_dir` you can also omit this option from your config file.
 
 Note that the default config will put the access_log and job database in `/var/log` and `var/db/` respectively. If you wish to put these in a different location please supply your own config. You can start the transcoder with your custom config using:
 
@@ -78,7 +80,7 @@ Parameters (HTTP POST data, should be valid JSON object):
     {
         "source_file": "/PATH/TO/INPUT/FILE.wmv",
         "destination_file":"/PATH/TO/OUTPUT/FILE.mp4",
-        "encoder_options": "-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k -vpre slow -vpre baseline -s 320x180 -y -threads 0",
+        "encoder_options": "-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k-s 320x180 -y -threads 0",
         "callback_urls": ["http://example.com/notifications"]
     }
 
