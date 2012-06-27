@@ -43,13 +43,13 @@ Please check for yourself where `npm` installs your packages and script.
 Configuration is done by specifying a CLI option (`-c`) and pointing to a file containing a valid JSON object (http://www.json.org/). Note that node.js' JSON parser is fairly strict so make sure you get the syntax right. An example config is:
 
     {
-        "port":        8080,
-        "access_log":  "/var/log/access_log",
-        "database":    "/var/db/jobs.db",
-        "slots":       8,
-        "interface":   "127.0.0.1",
-        "encoder":     "ffmpeg",
-        "scratch_dir": "/tmp",
+        "port":            8080,
+        "access_log":      "/var/log/access_log",
+        "database":        "/var/db/jobs.db",
+        "slots":           8,
+        "interface":       "127.0.0.1",
+        "encoder":         "ffmpeg",
+        "scratch_dir":     "/tmp",
         "use_scratch_dir": true
     }
 
