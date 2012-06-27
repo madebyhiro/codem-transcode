@@ -146,7 +146,7 @@ Get full status of one job with id "da56da6012bda2ce775fa028f056873bcb29cb3b".
 
     # curl http://localhost:8080/jobs/da56da6012bda2ce775fa028f056873bcb29cb3b
     
-    Output: {"id":"da56da6012bda2ce775fa028f056873bcb29cb3b", "status":"processing", "progress":0.21800947867298578, "duration":633, "filesize":39191346, "opts":"{\"source_file\":\"/shared/videos/asf/video.asf\", \"destination_file\":\"/shared/videos/mp4/journaal.mp4\", \"encoder_options\":\"-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k -vpre slow -vpre baseline -s 320x180 -y -threads 0\"}", "message":null, "created_at":1304338160, "updated_at":1304338173}
+    Output: {"id":"da56da6012bda2ce775fa028f056873bcb29cb3b", "status":"processing", "progress":0.21800947867298578, "duration":633, "filesize":39191346, "opts":"{\"source_file\":\"/shared/videos/asf/video.asf\", \"destination_file\":\"/shared/videos/mp4/journaal.mp4\", \"encoder_options\":\"-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k -s 320x180 -y -threads 0\"}", "message":null, "created_at":1304338160, "updated_at":1304338173}
 
 ## Tests
 
