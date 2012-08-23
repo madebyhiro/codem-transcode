@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/madebyhiro/codem-transcode.png)](http://travis-ci.org/madebyhiro/codem-transcode)
 # Codem-transcode
 
 * http://github.com/madebyhiro/codem-transcode
