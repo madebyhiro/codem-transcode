@@ -156,6 +156,14 @@ All tests are written using jasmine (via jasmine-node). Running them is as easy 
 
 More specs coming soon.
 
+## Issues and support
+
+If you run into any issues while using codem-transcode please use the Github issue tracker to see if it is a known problem
+or report it as a new one.
+
+We also provide commercial support for codem-transcode (for bugs, features, configuration, etc.). If you are interested in
+commercial support or are already receiving commercial support, feel free to contact us directly at hello@madebyhiro.com.
+
 ## License
 
 Codem-transcode is released under the MIT license, see `LICENSE.txt`.
