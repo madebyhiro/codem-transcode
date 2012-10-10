@@ -80,7 +80,7 @@ Parameters (HTTP POST data, should be valid JSON object):
     {
         "source_file": "/PATH/TO/INPUT/FILE.wmv",
         "destination_file":"/PATH/TO/OUTPUT/FILE.mp4",
-        "encoder_options": "-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k-s 320x180 -y -threads 0",
+        "encoder_options": "-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k -s 320x180 -y -threads 0",
         "callback_urls": ["http://example.com/notifications"]
     }
 
@@ -122,7 +122,7 @@ Responses:
 
 Create a new job, transcode "video.wmv" to "video.mp4" using the specified ffmpeg options (96kbit/s audio, 416kbit/s video, 320x180, use as much threads as possible). Requires libx264 support in your ffmpeg.
 
-    # curl -d '{"source_file": "/tmp/video.wmv","destination_file":"/tmp/video.mp4","encoder_options": "-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k -vpre slow -vpre baseline -s 320x180 -y -threads 0"}' http://localhost:8080/jobs
+    # curl -d '{"source_file": "/tmp/video.wmv","destination_file":"/tmp/video.mp4","encoder_options": "-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k -s 320x180 -y -threads 0"}' http://localhost:8080/jobs
 
     Output: {"message":"The transcoder accepted your job.","job_id":"d4b1dfebe6860839b2c21b70f35938d870011682"}
     
