@@ -16,7 +16,7 @@ Codem-transcode can be used in conjunction with Codem-schedule (https://github.c
 
 * ffmpeg (at least 0.10 and compiled/configured to your own taste)
 * sqlite3
-* node.js version 0.6.x, with packages (if you use npm they will be installed automatically):
+* node.js version 0.8.x (x>=11), with packages (if you use npm they will be installed automatically):
     * sqlite3 (http://github.com/developmentseed/node-sqlite3)
     * express (http://expressjs.com/)
     * argsparser (http://github.com/kof/node-argsparser)
