@@ -50,7 +50,8 @@ Configuration is done by specifying a CLI option (`-c`) and pointing to a file c
         "interface":       "127.0.0.1",
         "encoder":         "ffmpeg",
         "scratch_dir":     "/tmp",
-        "use_scratch_dir": true
+        "use_scratch_dir": true,
+        "ffprobe":         null
     }
 
 Configuration options:
@@ -63,6 +64,7 @@ Configuration options:
 * `encoder`; path to the ffmpeg binary, if it is in your path specifying only `ffmpeg` is sufficient, defaults to `ffmpeg`
 * `scratch_dir`; temporary files are written here and moved into the destination directory after transcoding, defaults to `/tmp`
 * `use_scratch_dir`; if set to false temporary files will be written to the output directory of your job, for setups that don't require or are not able to use a separate `scratch_dir`. Defaults to `true` so if you don't want to disable the `scratch_dir` you can also omit this option from your config file.
+* `ffprobe`; path to the ffprobe binary, if it is in your path specifying only `ffprobe` is sufficient, defaults to `null`. Set this to a non-null value if you want to enable ffprobe support in the transcoder.
 
 Note that the default config will put the access_log and job database in `/var/log` and `var/db/` respectively. If you wish to put these in a different location please supply your own config. You can start the transcoder with your custom config using:
 
@@ -118,6 +120,23 @@ Responses:
 * `404 Not Found` - Job not found
 
 * * *
+Request: `POST /probe`
+
+Probe a source file using `ffprobe` (if you have enabled it in the configuration). Output is a JSON object containing the `ffprobe` output.
+
+Parameters (HTTP POST data, should be valid JSON object):
+
+    {
+        "source_file": "/PATH/TO/INPUT/FILE.wmv"
+    }
+
+Responses:
+
+* `200 OK` - Returns `ffprobe` output JSON-formatted
+* `400 Bad Request` - Returned if you attempt to probe a file when there is no path set to the `ffprobe` binary
+* `500 Internal Server Error` - Returned if there was an error while trying to probe, the output from `ffprobe` will be returned as well
+
+* * *
 ## Examples
 
 Create a new job, transcode "video.wmv" to "video.mp4" using the specified ffmpeg options (96kbit/s audio, 416kbit/s video, 320x180, use as much threads as possible). Requires libx264 support in your ffmpeg.
@@ -148,6 +167,12 @@ Get full status of one job with id "da56da6012bda2ce775fa028f056873bcb29cb3b".
     
     Output: {"id":"da56da6012bda2ce775fa028f056873bcb29cb3b", "status":"processing", "progress":0.21800947867298578, "duration":633, "filesize":39191346, "opts":"{\"source_file\":\"/shared/videos/asf/video.asf\", \"destination_file\":\"/shared/videos/mp4/journaal.mp4\", \"encoder_options\":\"-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k -s 320x180 -y -threads 0\"}", "message":null, "created_at":1304338160, "updated_at":1304338173}
 
+Probe a file using `ffprobe`.
+
+    # curl -d '{"source_file": "/tmp/video.wmv"}' http://localhost:8080/probe
+    
+    Output: {"ffprobe":{"streams":[ ... stream info ... ],"format":{ ... format info ... }}}}
+    
 ## Tests
 
 All tests are written using jasmine (via jasmine-node). Running them is as easy as:
