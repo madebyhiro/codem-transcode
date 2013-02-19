@@ -1,7 +1,7 @@
 {
   "name": "codem-transcode",
   "description": "Offline video transcoding using ffmpeg, with a small HTTP API.",
-  "version": "0.4.4",
+  "version": "0.5.0beta",
   "keywords": ["transcoding", "ffmpeg", "video"],
   "homepage": "http://www.transcodem.com/",
   "repository": {
