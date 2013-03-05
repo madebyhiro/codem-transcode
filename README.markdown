@@ -15,8 +15,9 @@ Codem-transcode can be used in conjunction with Codem-schedule (https://github.c
 ## Requirements
 
 * ffmpeg (at least 0.10 and compiled/configured to your own taste)
-* sqlite3
+* sqlite3/MySQL/PostgreSQL
 * node.js version 0.8.x (x>=11), with packages (if you use npm they will be installed automatically):
+    * sequelize (http://sequelizejs.com/)
     * sqlite3 (http://github.com/developmentseed/node-sqlite3)
     * express (http://expressjs.com/)
     * argsparser (http://github.com/kof/node-argsparser)
@@ -29,6 +30,27 @@ The recommended installation procedure is to just use `npm` (http://npmjs.org/):
     # npm install codem-transcode
 
 Install it to your preferred location, or use the `-g` option to install it globally.
+
+## Upgrading
+
+Upgrading should most of the times be as simple as shutting down, installing the new package and restarting the transcoder. Unless you're...
+
+### Upgrading from earlier versions to 0.5 (IMPORTANT!)
+
+Codem-transcode switched from using "plain" SQL (using sqlite) to a database abstraction layer (Sequelize). This brings some advantages
+(support for multiple database engines, better consistency, easier migrations in the future), but is not backwards compatible. Therefore, we recommend you backup and move away your old database and
+start with a fresh one. The procedure for this would be:
+
+*   Shutdown the transcoder;
+*   Move your database away (or delete if you're not interested in the history);
+*   Install the new package;
+*   Start the transcoder.
+
+This will initialize a new up-to-date database which can be migrated to newer schema's more easily in the future. If you are doing a
+clean install you do not need to worry about any of this.
+
+If you want to keep your history we recommend you follow the above procedure and write a separate import script to import your old data
+into the new database.
 
 ## Starting
 
