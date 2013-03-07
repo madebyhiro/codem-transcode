@@ -220,6 +220,8 @@ Probe a file using `ffprobe`.
     
 ## Tests
 
+*TESTS ARE MISSING FROM THIS 0.5 BETA RELEASE*
+
 All tests are written using jasmine (via jasmine-node). Running them is as easy as:
 
     # jasmine-node test
