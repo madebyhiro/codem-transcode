@@ -13,6 +13,10 @@ module.exports = {
         message:     { type: DataTypes.TEXT, defaultValue: null },
         createdAt:   DataTypes.DATE,
         updatedAt:   DataTypes.DATE
+      },
+      {
+        charset: 'utf8',
+        collate: 'utf8_general_ci'
       }
     )
     migration.addIndex('jobs', ['internalId'])
