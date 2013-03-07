@@ -81,7 +81,7 @@ Configuration options:
 * `port`; port to start server on, default `8080`
 * `interface`; which network interface to listen on, default `127.0.0.1` (only `localhost`)
 * `access_log`; location to store HTTP access log, default `/var/log/access_log`
-* `database`; location to store sqlite jobs DB, default `/var/db/jobs.db`
+* `database`; location to store the jobs database, default is SQLite with `/var/db/jobs.db`
 * `slots`; number of transcoding slots to use (i.e. the maximum number of ffmpeg child processes), defaults to the number of CPUs/cores in your machine
 * `encoder`; path to the ffmpeg binary, if it is in your path specifying only `ffmpeg` is sufficient, defaults to `ffmpeg`
 * `scratch_dir`; temporary files are written here and moved into the destination directory after transcoding, defaults to `/tmp`
@@ -91,6 +91,29 @@ Configuration options:
 Note that the default config will put the access_log and job database in `/var/log` and `var/db/` respectively. If you wish to put these in a different location please supply your own config. You can start the transcoder with your custom config using:
 
     # /PATH/TO/TRANSCODER/bin/codem-transcode -c /PATH/TO/CONFIG/config.json
+
+### Advanced database configuration
+
+codem-transcode supports multiple database backends, courtesy of Sequelize. The default is still to store data in a SQLite database (whenever you specify a string for `database` in the config file). To use MySQL or Postgres, supply a valid object for the database entry. Your configuration will then look like:
+
+    {
+        "port":            8080,
+        "access_log":      "/var/log/access_log",
+        "database":        {
+            "dialect": "mysql",
+            "username": "root",        
+            "database": "codem",
+            "host": "localhost"
+        },
+        "slots":           8,
+        "interface":       "127.0.0.1",
+        "encoder":         "ffmpeg",
+        "scratch_dir":     "/tmp",
+        "use_scratch_dir": true,
+        "ffprobe":         null
+    }
+
+Be sure to specify a `dialect` ("mysql", "postgres", "sqlite"), a `username`, a `password` (can be omitted if using a passwordless database) and a `host` (can be omitted for "localhost").
 
 ## Usage
 
