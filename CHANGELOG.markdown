@@ -1,4 +1,4 @@
-## codem-transcode 0.5.0-beta.2 (unreleased) ##
+## codem-transcode 0.5.0-beta.2 (2013/03/07) ##
 
 *   Switch to Sequelize for database abstraction. codem-transcode now supports SQLite, MySQL and Postgres. PLEASE NOTE
     that this change is *not* backwards compatible. You will need to update your database. If you are coming from an old
