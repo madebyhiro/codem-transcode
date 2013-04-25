@@ -1,3 +1,8 @@
+## codem-transcode 0.5.0-beta.3 (2013/04/25) ##
+
+*   Allow purging of old successful jobs. See README for usage.
+*   Tested against Node.js 0.10.
+
 ## codem-transcode 0.5.0-beta.2 (2013/03/07) ##
 
 *   Switch to Sequelize for database abstraction. codem-transcode now supports SQLite, MySQL and Postgres. PLEASE NOTE
