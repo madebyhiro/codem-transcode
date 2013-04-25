@@ -165,6 +165,15 @@ Responses:
 * `404 Not Found` - Job not found
 
 * * *
+Request: `DELETE /jobs/purge/$AGE`
+
+Purge successfully completed jobs from the database with a certain age. Age is specified in seconds since it was created. So an age of 3600 deletes jobs that were successful and created more than 1 hour ago.
+
+Responses:
+
+* `200 OK` - Returns number of jobs that were purged.
+
+* * *
 Request: `POST /probe`
 
 Probe a source file using `ffprobe` (if you have enabled it in the configuration). Output is a JSON object containing the `ffprobe` output.
