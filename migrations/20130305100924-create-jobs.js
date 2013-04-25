@@ -1,5 +1,5 @@
 module.exports = {
-  up: function(migration, DataTypes) {
+  up: function(migration, DataTypes, done) {
     // add altering commands here
     migration.createTable('jobs',
       {
@@ -19,10 +19,10 @@ module.exports = {
         collate: 'utf8_general_ci'
       }
     )
-    migration.addIndex('jobs', ['internalId'])
+    migration.addIndex('jobs', ['internalId']).complete(done);
   },
-  down: function(migration) {
+  down: function(migration, DataTypes, done) {
     // add reverting commands here
-    migration.dropTable('jobs')
+    migration.dropTable('jobs').complete(done);
   }
 }
