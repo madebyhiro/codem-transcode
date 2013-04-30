@@ -1,3 +1,8 @@
+## codem-transcode 0.5.0-beta.4 (2013/04/30) ##
+
+*   Fix for #15, cannot open database when using default config.
+*   sqlite3 dependency updated to 2.1.7.
+
 ## codem-transcode 0.5.0-beta.3 (2013/04/25) ##
 
 *   Allow purging of old successful jobs. See README for usage.
