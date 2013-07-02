@@ -1,3 +1,9 @@
+## codem-transcode 0.5.0 (xxxx/yy/zz) ##
+
+*   All fixes/features from the betas.
+*   Use async package for some of the complex callback chains.
+*   Ability to capture thumbnails from the videos after transcoding.
+
 ## codem-transcode 0.5.0-beta.4 (2013/04/30) ##
 
 *   Fix for #15, cannot open database when using default config.

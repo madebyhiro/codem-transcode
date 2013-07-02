@@ -17,7 +17,8 @@
     "sqlite3": "~2.1.7",
     "mkdirp": "~0.3.4",
     "express": "~2.5.11",
-    "argsparser": "~0.0.6"
+    "argsparser": "~0.0.6",
+    "async": "~0.2.9"
   },
   "licenses": [{
     "type": "MIT",

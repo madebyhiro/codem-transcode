@@ -22,6 +22,7 @@ Codem-transcode can be used in conjunction with Codem-schedule (https://github.c
     * express (http://expressjs.com/)
     * argsparser (http://github.com/kof/node-argsparser)
     * mkdirp (https://github.com/substack/node-mkdirp)
+    * async (https://github.com/caolan/async)
 
 ## Installation
 
@@ -128,6 +129,11 @@ Parameters (HTTP POST data, should be valid JSON object):
         "source_file": "/PATH/TO/INPUT/FILE.wmv",
         "destination_file":"/PATH/TO/OUTPUT/FILE.mp4",
         "encoder_options": "-acodec libfaac -ab 96k -ar 44100 -vcodec libx264 -vb 416k -s 320x180 -y -threads 0",
+        "thumbnail_options": {
+            "percentages": [0.25, 0.5, 0.75],
+            "size": "160x90",
+            "format": "png"
+        },
         "callback_urls": ["http://example.com/notifications"]
     }
 
@@ -137,7 +143,23 @@ Responses:
 * `400 Bad Request` - Invalid request (format)
 * `503 Service Unavailable` - Transcoder not accepting jobs at the moment (all encoding slots are in use)
 
-The `callback_urls` array is optional and is a list (array) of HTTP endpoints that should be notified once encoding finishes (due to the job being complete or some error condition). All other options are required (`source_file`, `destination_file` and `encoder_options`). Input and output files should be *absolute* paths.
+The `callback_urls` array is optional and is a list (array) of HTTP endpoints that should be notified once encoding finishes (due to the job being complete or some error condition).
+
+The `thumbnail_options` object is optional and contains a set of thumbnails that should be encoded after the transcoding is complete. Thumbnails are captured from the source file for maximum quality. The options for thumbnails include:
+
+* Either "percentages" or "seconds" (but not both at the same time), valid options are:
+    * A single percentage, this will trigger a thumbnail every x%. `"percentages": 0.1` will generate thumbnails at 0%, 10%, 20%, [...], 100%.
+    * An array of explicit percentages, this will trigger thumbnails only at the specified positions.
+      `"percentages": [0.25, 0.5, 0.75]` will generate thumbnails at 25%, 50% and 75%.
+    * A single offset in seconds, this will trigger a thumbnail every x seconds. `"seconds": 10` will generate thumbnails at 0 seconds, 10 seconds, 20 seconds, etc., until the end of the source file.
+    * An array of explicit offsets, this will trigger thumbnails only at the specified positions.
+      `"seconds": [30, 60, 90]` will generate thumbnails at 30 seconds, 60 seconds and 90 seconds.
+* A size can be specified in pixels (width x height). If omitted it will generate thumbnails the size of the source video. (optional)
+* A format for the thumbnails. The format must be supported by your ffmpeg binary. If omitted it will generate thumbnails in the JPEG format. Most people will use either "jpg" or "png". (optional)
+
+If you specify thumbnails but somehow they can't be generated, your job will be marked as failed.
+
+All other options are required (`source_file`, `destination_file` and `encoder_options`). Input and output files must be *absolute* paths.
 
 * * *
 Request: `GET /jobs`
@@ -227,16 +249,6 @@ Probe a file using `ffprobe`.
     
     Output: {"ffprobe":{"streams":[ ... stream info ... ],"format":{ ... format info ... }}}}
     
-## Tests
-
-*TESTS ARE MISSING FROM THIS 0.5 BETA RELEASE*
-
-All tests are written using jasmine (via jasmine-node). Running them is as easy as:
-
-    # jasmine-node test
-
-More specs coming soon.
-
 ## Issues and support
 
 If you run into any issues while using codem-transcode please use the Github issue tracker to see if it is a known problem
