@@ -1,4 +1,4 @@
-## codem-transcode 0.5.0 (xxxx/yy/zz) ##
+## codem-transcode 0.5.0 (2013/07/02) ##
 
 *   All fixes/features from the betas.
 *   Use async package for some of the complex callback chains.
