@@ -157,9 +157,13 @@ The `thumbnail_options` object is optional and contains a set of thumbnails that
 * A size can be specified in pixels (width x height). If omitted it will generate thumbnails the size of the source video. (optional)
 * A format for the thumbnails. The format must be supported by your ffmpeg binary. If omitted it will generate thumbnails in the JPEG format. Most people will use either "jpg" or "png". (optional)
 
-If you specify thumbnails but somehow they can't be generated, your job will be marked as failed.
+If you specify thumbnails but an error occurs during generation, your job will be marked as failed. If you don't specify a valid `seconds` or `percentages` option thumbnail generation will be skipped but the job can still be completed successfully.
 
 All other options are required (`source_file`, `destination_file` and `encoder_options`). Input and output files must be *absolute* paths.
+
+### Thumbnail-only job
+
+It's possible to only generate thumbnails from a video and not do any transcoding at all. This might come in handy if you're transcoding to lots of different formats and want to keep thumbnail generation separate from transcoding. You achieve this by POSTing a job with `"encoder_options": ""` (empty string) and of course specifying your `thumbnail_options`. In this case `destination_file` should be a _prefix_ for the output file, e.g. `"destination_file": "/Users/codem/output/my_video"` results in thumbnails in `/Users/codem/output/` with filenames such as `my_video-$offset.$format` (where `$offset` is the thumbnail offset in the video and `$format` of course the thumbnail format). All other options remain the same. See the examples.
 
 * * *
 Request: `GET /jobs`
@@ -248,6 +252,12 @@ Probe a file using `ffprobe`.
     # curl -d '{"source_file": "/tmp/video.wmv"}' http://localhost:8080/probe
     
     Output: {"ffprobe":{"streams":[ ... stream info ... ],"format":{ ... format info ... }}}}
+    
+Thumbnail-only job (160x90 in PNG format every 10% of the video).
+
+    # curl -d '{"source_file": "/tmp/video.mp4","destination_file":"/tmp/thumbnails/video","encoder_options": "", "thumbnail_options": { "percentages": 0.1, "size": "160x90", "format": "png"} }' http://localhost:8080/jobs
+
+    Output: {"message":"The transcoder accepted your job.","job_id":"d4b1dfebe6860839b2c21b70f35938d870011682"}
     
 ## Issues and support
 
