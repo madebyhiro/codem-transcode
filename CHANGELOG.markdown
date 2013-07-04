@@ -1,3 +1,8 @@
+## codem-transcode 0.5.1 (zzzz/yy/xx) ##
+
+*   Extra path separator / nul file check for platform-specific issues (Windows/*nix)
+*   Allow thumbnail-only jobs. See README.
+
 ## codem-transcode 0.5.0 (2013/07/02) ##
 
 *   All fixes/features from the betas.
