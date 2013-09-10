@@ -1,7 +1,7 @@
 module.exports = {
   up: function(migration, DataTypes, done) {
     // add altering commands here
-    migration.createTable('jobs',
+    migration.createTable('Jobs',
       {
         id:          { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
         internalId:  { type: DataTypes.STRING, defaultValue: null },
@@ -19,10 +19,10 @@ module.exports = {
         collate: 'utf8_general_ci'
       }
     )
-    migration.addIndex('jobs', ['internalId']).complete(done);
+    migration.addIndex('Jobs', ['internalId']).complete(done);
   },
   down: function(migration, DataTypes, done) {
     // add reverting commands here
-    migration.dropTable('jobs').complete(done);
+    migration.dropTable('Jobs').complete(done);
   }
 }

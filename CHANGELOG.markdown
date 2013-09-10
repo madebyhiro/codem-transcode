@@ -1,3 +1,7 @@
+## codem-transcode 0.5.2 (2013/09/10) ##
+
+* Bugfix: migrations should create "Jobs" table (instead of "jobs")
+
 ## codem-transcode 0.5.1 (2013/07/08) ##
 
 *   Extra path separator / nul file check for platform-specific issues (Windows/*nix)
