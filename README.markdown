@@ -134,7 +134,8 @@ Parameters (HTTP POST data, should be valid JSON object):
             "size": "160x90",
             "format": "png"
         },
-        "callback_urls": ["http://example.com/notifications"]
+        "callback_urls": ["http://example.com/notifications"],
+        "encoder": "ffmpeg" // this is optional but will overwrite your default encoder
     }
 
 Responses:
