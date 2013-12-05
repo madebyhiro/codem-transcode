@@ -1,3 +1,7 @@
+## codem-transcode 0.5.3 (not yet released) ##
+
+* Bugfix: issue #19 and #20, missing or corrupt ffmpeg will no longer put transcoder in weird state.
+
 ## codem-transcode 0.5.2 (2013/09/10) ##
 
 * Bugfix: migrations should create "Jobs" table (instead of "jobs")
