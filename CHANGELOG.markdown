@@ -1,4 +1,4 @@
-## codem-transcode 0.5.3 (not yet released) ##
+## codem-transcode 0.5.3 (2014/01/27) ##
 
 * Bugfix: issue #19 and #20, missing or corrupt ffmpeg will no longer put transcoder in weird state.
 * Send "X-Codem-Notify-Timestamp" header for notifications with millisecond precision (instead of second).
