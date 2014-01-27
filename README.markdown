@@ -143,7 +143,7 @@ Responses:
 * `400 Bad Request` - Invalid request (format)
 * `503 Service Unavailable` - Transcoder not accepting jobs at the moment (all encoding slots are in use)
 
-The `callback_urls` array is optional and is a list (array) of HTTP endpoints that should be notified once encoding finishes (due to the job being complete or some error condition).
+The `callback_urls` array is optional and is a list (array) of HTTP endpoints that should be notified once encoding finishes (due to the job being complete or some error condition). The notification will sent using HTTP PUT to the specified endpoints with the job status. It will also include a custom HTTP header "X-Codem-Notify-Timestamp" that contains the timestamp (in milliseconds) at which the notification was generated and sent. It is best to observe this header to determine the order in which notifications are received at the other end due to network lag or other circumstances that may cause notifications to be received out of order.
 
 The `thumbnail_options` object is optional and contains a set of thumbnails that should be encoded after the transcoding is complete. Thumbnails are captured from the source file for maximum quality. The options for thumbnails include:
 
