@@ -1,3 +1,7 @@
+## codem-transcode 0.5.4 (2014/03/18) ##
+
+* Updated sqlite3 dependency to 2.2.0.
+
 ## codem-transcode 0.5.3 (2014/01/27) ##
 
 * Bugfix: issue #19 and #20, missing or corrupt ffmpeg will no longer put transcoder in weird state.
