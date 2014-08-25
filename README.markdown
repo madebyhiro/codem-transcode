@@ -134,6 +134,9 @@ Parameters (HTTP POST data, should be valid JSON object):
             "size": "160x90",
             "format": "png"
         },
+        "segments_options" : {
+          "segment_time": 10
+        },
         "callback_urls": ["http://example.com/notifications"]
     }
 
@@ -142,6 +145,9 @@ Responses:
 * `202 Accepted` - Job accepted
 * `400 Bad Request` - Invalid request (format)
 * `503 Service Unavailable` - Transcoder not accepting jobs at the moment (all encoding slots are in use)
+
+
+Required options are `source_file`, `destination_file` and `encoder_options`. Input and output files must be *absolute* paths.
 
 The `callback_urls` array is optional and is a list (array) of HTTP endpoints that should be notified once encoding finishes (due to the job being complete or some error condition). The notification will sent using HTTP PUT to the specified endpoints with the job status. It will also include a custom HTTP header "X-Codem-Notify-Timestamp" that contains the timestamp (in milliseconds) at which the notification was generated and sent. It is best to observe this header to determine the order in which notifications are received at the other end due to network lag or other circumstances that may cause notifications to be received out of order.
 
@@ -159,7 +165,23 @@ The `thumbnail_options` object is optional and contains a set of thumbnails that
 
 If you specify thumbnails but an error occurs during generation, your job will be marked as failed. If you don't specify a valid `seconds` or `percentages` option thumbnail generation will be skipped but the job can still be completed successfully.
 
-All other options are required (`source_file`, `destination_file` and `encoder_options`). Input and output files must be *absolute* paths.
+The `segments_options` object is optional and contains segment time (duration) in seconds.
+Segmented videos are used in [HLS](https://en.wikipedia.org/wiki/HTTP_Live_Streaming).
+These options applied to encoded video, thus `encoder_options` are required.
+Moreover `encoder_options` should prepare video for segmenting, because bitstream
+filter [h264_mp4toannexb](https://www.ffmpeg.org/ffmpeg-bitstream-filters.html#h264_005fmp4toannexb) will be applied to the video.
+
+The segmenting command looks like:
+```
+ffmpeg -i /tmp/46ee0a404a4b75d85c09d98a7c6b403579ee9f99.mp4 -codec copy -map 0 \
+-f segment -vbsf h264_mp4toannexb -flags -global_header -segment_format mpegts \
+-segment_list /path/to/dest_file_dir/dest_file_name.m3u8 -segment_time 10 \
+/path/to/dest_file_dir/dest_file_name-%06d.ts
+```
+
+"46ee0a404a4b75d85c09d98a7c6b403579ee9f99.mp4" is a temporary encoded file which is not moved to destination folder yet. 
+
+
 
 ### Thumbnail-only job
 
@@ -259,6 +281,38 @@ Thumbnail-only job (160x90 in PNG format every 10% of the video).
 
     Output: {"message":"The transcoder accepted your job.","job_id":"d4b1dfebe6860839b2c21b70f35938d870011682"}
     
+
+Segmenting job.
+
+    # curl -d '{"source_file": "/tmp/video.mp4", "destination_file": "/tmp/output/test.mp4", "encoder_options": "-vb 2000k -minrate 2000k -maxrate 2000k -bufsize 2000k -vf scale=min'(iw,1280)':-1 -s 1280x720 -acodec libfdk_aac -ab 192000 -ar 44100 -ac 2 -vcodec libx264 -movflags faststart -sn -r 29.97 -threads 0", "segments_options": {"segment_time": 10} }' http://localhost:8080/jobs
+
+    Output: {"message":"The transcoder accepted your job.","job_id":"7dc3c268783d7f3c737f3a134ccf1d4f15bb8442"}
+
+    Status of finished job:
+
+    # curl http://localhost:8080/jobs/7dc3c268783d7f3c737f3a134ccf1d4f15bb8442
+
+    ```javascript
+    Output:
+    {
+      "id": "7dc3c268783d7f3c737f3a134ccf1d4f15bb8442",
+      "status": "success",
+      "progress": 1,
+      "duration": 1,
+      "filesize": 783373,
+      "message": "ffmpeg finished succesfully.",
+      "playlist": "/tmp/output/test.m3u8",
+      "segments": [
+        "/tmp/output/test-000000.ts",
+        "/tmp/output/test-000001.ts",
+        "/tmp/output/test-000002.ts",
+        "/tmp/output/test-000003.ts",
+        "/tmp/output/test-000004.ts",
+        "/tmp/output/test-000005.ts"
+      ]
+    }
+    ```
+
 ## Issues and support
 
 If you run into any issues while using codem-transcode please use the Github issue tracker to see if it is a known problem
