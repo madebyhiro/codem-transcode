@@ -1,3 +1,7 @@
+## codem-transcode 0.5.4 (2014/09/08) ##
+
+* Added basic HLS support (@cutalion) using "segments_options".
+
 ## codem-transcode 0.5.4 (2014/03/18) ##
 
 * Updated sqlite3 dependency to 2.2.0.
