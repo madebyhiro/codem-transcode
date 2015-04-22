@@ -1,4 +1,8 @@
-## codem-transcode 0.5.4 (2014/09/08) ##
+## codem-transcode 0.5.6 (2015/04/22) ##
+
+* Return a job from memory if it is still transcoding.
+
+## codem-transcode 0.5.5 (2014/09/08) ##
 
 * Added basic HLS support (@cutalion) using "segments_options".
 
