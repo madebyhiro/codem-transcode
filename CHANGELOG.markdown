@@ -1,3 +1,7 @@
+## codem-transcode 0.5.7 (2015/04/23) ##
+
+* Add option for database port in config (@brain64bit).
+
 ## codem-transcode 0.5.6 (2015/04/22) ##
 
 * Return a job from memory if it is still transcoding.

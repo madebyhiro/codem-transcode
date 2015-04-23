@@ -104,7 +104,8 @@ codem-transcode supports multiple database backends, courtesy of Sequelize. The 
             "dialect": "mysql",
             "username": "root",        
             "database": "codem",
-            "host": "localhost"
+            "host": "localhost",
+            "port": 3306
         },
         "slots":           8,
         "interface":       "127.0.0.1",
@@ -114,7 +115,7 @@ codem-transcode supports multiple database backends, courtesy of Sequelize. The 
         "ffprobe":         null
     }
 
-Be sure to specify a `dialect` ("mysql", "postgres", "sqlite"), a `username`, a `password` (can be omitted if using a passwordless database) and a `host` (can be omitted for "localhost").
+Be sure to specify a `dialect` ("mysql", "postgres", "sqlite"), a `username`, a `password` (can be omitted if using a passwordless database) and a `host` (can be omitted for "localhost"). `port` can be omitted for the default port.
 
 ## Usage
 
