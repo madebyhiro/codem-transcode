@@ -1,3 +1,7 @@
+## codem-transcode 0.5.8 (2015/07/05) ##
+
+* Prevent transcoder from returning a negative freeSlot count (@larsfi).
+
 ## codem-transcode 0.5.7 (2015/04/23) ##
 
 * Add option for database port in config (@brain64bit).
