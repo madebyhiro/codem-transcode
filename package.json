@@ -13,7 +13,7 @@
     "node": ">=0.8.11"
   },
   "dependencies": {
-    "sequelize": "~1.6.0",
+    "sequelize": "~1.7.10",
     "sqlite3": "~3.0.8",
     "mkdirp": "~0.3.4",
     "express": "~2.5.11",
