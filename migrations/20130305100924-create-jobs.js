@@ -19,7 +19,7 @@ module.exports = {
         collate: 'utf8_general_ci'
       }
     )
-    migration.addIndex('Jobs', ['internalId']).complete(done);
+    //migration.addIndex('Jobs', ['internalId']).complete(done);
   },
   down: function(migration, DataTypes, done) {
     // add reverting commands here
