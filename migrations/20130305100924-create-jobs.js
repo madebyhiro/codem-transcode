@@ -18,7 +18,7 @@ module.exports = {
         charset: 'utf8',
         collate: 'utf8_general_ci'
       }
-    )
+    ).complete(done);
     //migration.addIndex('Jobs', ['internalId']).complete(done);
   },
   down: function(migration, DataTypes, done) {
