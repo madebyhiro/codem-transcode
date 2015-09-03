@@ -1,3 +1,7 @@
+## codem-transcode 0.5.9 (2015/09/03) ##
+
+* Fix for lingering "processing" jobs. (#42)
+
 ## codem-transcode 0.5.8 (2015/07/05) ##
 
 * Prevent transcoder from returning a negative freeSlot count (@larsfi).
