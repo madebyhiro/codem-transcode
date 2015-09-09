@@ -1,6 +1,7 @@
 ## codem-transcode 0.5.9 (2015/09/03) ##
 
 * Fix for lingering "processing" jobs. (#42)
+* Encoder options can be an array instead of a string as well (to allow complex filters)
 
 ## codem-transcode 0.5.8 (2015/07/05) ##
 
