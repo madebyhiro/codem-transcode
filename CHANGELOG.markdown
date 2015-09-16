@@ -1,3 +1,12 @@
+## codem-transcode 0.5.10 (2015/09/16) ##
+
+* Increase maxBuffer to 4MB to compensate for older ffmpegs
+
+## codem-transcode 0.5.9 (2015/09/03) ##
+
+* Fix for lingering "processing" jobs. (#42)
+* Encoder options can be an array instead of a string as well (to allow complex filters)
+
 ## codem-transcode 0.5.8 (2015/07/05) ##
 
 * Prevent transcoder from returning a negative freeSlot count (@larsfi).
