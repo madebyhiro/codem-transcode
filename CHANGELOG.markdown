@@ -1,3 +1,7 @@
+## codem-transcode 0.5.10 (2015/09/16) ##
+
+* Increase maxBuffer to 4MB to compensate for older ffmpegs
+
 ## codem-transcode 0.5.9 (2015/09/03) ##
 
 * Fix for lingering "processing" jobs. (#42)
