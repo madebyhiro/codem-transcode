@@ -1,3 +1,8 @@
+## codem-transcode 0.5.11 (2015/12/02) ##
+
+* Sanitize null values (@brain64bit)
+* Allow HTTPS for notification delivery (@mirion)
+
 ## codem-transcode 0.5.10 (2015/09/16) ##
 
 * Increase maxBuffer to 4MB to compensate for older ffmpegs
