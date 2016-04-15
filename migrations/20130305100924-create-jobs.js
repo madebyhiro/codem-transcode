@@ -8,7 +8,7 @@ module.exports = {
         status:      { type: DataTypes.STRING, defaultValue: "processing" },
         progress:    { type: DataTypes.FLOAT, defaultValue: 0.0 },
         duration:    { type: DataTypes.INTEGER, defaultValue: 0 },
-        filesize:    { type: DataTypes.INTEGER, defaultValue: 0 },
+        filesize:    { type: DataTypes.BIGINT, defaultValue: 0 },
         opts:        { type: DataTypes.TEXT, defaultValue: null },
         message:     { type: DataTypes.TEXT, defaultValue: null },
         createdAt:   DataTypes.DATE,
