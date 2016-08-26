@@ -3,7 +3,7 @@
   "description": "Offline video transcoding using ffmpeg, with a small HTTP API.",
   "version": "0.5.11",
   "keywords": ["transcoding", "ffmpeg", "video"],
-  "homepage": "http://www.transcodem.com/",
+  "homepage": "https://github.com/madebyhiro/codem-transcode",
   "repository": {
     "type": "git",
     "url": "https://github.com/madebyhiro/codem-transcode.git"
@@ -20,8 +20,5 @@
     "argsparser": "~0.0.6",
     "async": "~0.2.9"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "https://github.com/madebyhiro/codem-transcode/blob/master/LICENSE.txt"
-  }]
+  "license": "MIT"
 }
