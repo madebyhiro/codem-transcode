@@ -333,6 +333,25 @@ Segmenting-only job (you are expected to have a valid MP4 file suitable for segm
         "/tmp/segments/video-000002.ts"
       ]
     }
+
+## Object Storage integration
+
+It is possible to use an external object store to retrieve source files and upload completed assets.
+In your configuration JSON, include a `object_storage` object compatible with [a provider supported by pkgcloud](https://github.com/pkgcloud/pkgcloud#storage)
+Also specify a `containerIn` and `containerOut` for your in/out feeds.
+
+```javascript
+  "object_storage": {
+    "provider": "openstack", // Or other provider supported by pkgcloud
+    // ... additional auth as required by your provider ...
+    "containerIn": "in",
+    "containerOut": "out"
+  }
+```
+
+With an object storage provider configured, Codem-transcode will look for the input file inside of the "in" container,
+and return either a video file or tar-gzipped archive of segments/thumbnails with the job's internalId (a hash).
+
 ## Issues and support
 
 If you run into any issues while using codem-transcode please use the Github issue tracker to see if it is a known problem
