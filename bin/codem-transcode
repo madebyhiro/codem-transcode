@@ -1,5 +1,24 @@
 #!/usr/bin/env node
+const Transcoder = require('../lib/transcoder.js');
+const argv       = require('minimist')(process.argv.slice(2), { alias: { c: "config", h: "help" }});
 
-var Transcoder = require('../lib/transcoder.js');
+function printUsageAndExit() {
+  console.log([
+    "usage: codem-transcode [arguments]",
+    "",
+    "arguments:",
+    "  -c --config        Specify the config file to use. Must be a valid JSON object.",
+    "  -h --help          Print this list and exit."
+  ].join('\n'));
+  process.exit()
+}
 
-new Transcoder().boot();
+function validateArguments(argv) {
+  if (argv.help)    { printUsageAndExit() }
+  if (!argv.config) { printUsageAndExit() }
+}
+
+validateArguments(argv)
+
+const transcoder = new Transcoder()
+transcoder.boot()

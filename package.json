@@ -22,9 +22,11 @@
     "node": ">=6.4.0"
   },
   "devDependencies": {
-    "jasmine": "=2.5.2"
+    "jasmine": "~2.5.2"
   },
-  "dependencies": { },
+  "dependencies": {
+    "minimist": "~1.2.0"
+  },
   "license": "MIT",
   "scripts": {
     "test": "jasmine"
