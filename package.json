@@ -4,9 +4,18 @@
   "version": "1.0.0-alpha",
   "keywords": ["transcoding", "ffmpeg", "video"],
   "homepage": "https://github.com/madebyhiro/codem-transcode",
+  "main": "lib/transcoder",
   "repository": {
     "type": "git",
     "url": "https://github.com/madebyhiro/codem-transcode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/madebyhiro/codem-transcode/issues"
+  },
+  "author": {
+    "name": "Sjoerd Tieleman",
+    "email": "sjoerd@madebyhiro.com",
+    "url": "https://madebyhiro.com/"
   },
   "bin": { "codem-transcode": "./bin/codem-transcode" },
   "engines": {
