@@ -1,6 +1,17 @@
 #!/usr/bin/env node
-const Transcoder = require('../lib/transcoder.js');
-const argv       = require('minimist')(process.argv.slice(2), { alias: { c: "config", h: "help" }});
+const Transcoder = require('../lib/transcoder.js')
+const Config     = require('../lib/config.js')
+const argv       = require('minimist')(process.argv.slice(2), { alias: { c: "config", h: "help" }})
+
+function printErrorAndExit(error) {
+  if (error instanceof SyntaxError) {
+    console.log("Error: Could not parse the config file. Please check if it's a valid JSON file.")
+  } else if (error.code === "ENOENT") {
+    console.log("Error: Could not find the config file. Please check if it's the correct path.")
+  }
+  console.log(error)
+  process.exit(1)
+}
 
 function printUsageAndExit() {
   console.log([
@@ -9,8 +20,8 @@ function printUsageAndExit() {
     "arguments:",
     "  -c --config        Specify the config file to use. Must be a valid JSON object.",
     "  -h --help          Print this list and exit."
-  ].join('\n'));
-  process.exit()
+  ].join('\n'))
+  process.exit(1)
 }
 
 function validateArguments(argv) {
@@ -20,5 +31,13 @@ function validateArguments(argv) {
 
 validateArguments(argv)
 
-const transcoder = new Transcoder()
+const config = (() => {
+  try {
+    return new Config(argv.config)
+  } catch(err) {
+    printErrorAndExit(err)
+  }  
+})()
+
+const transcoder = new Transcoder(config)
 transcoder.boot()
