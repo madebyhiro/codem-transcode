@@ -1,7 +1,16 @@
 #!/usr/bin/env node
+const Bunyan     = require('bunyan')
 const Transcoder = require('../lib/transcoder.js')
 const Config     = require('../lib/config.js')
 const argv       = require('minimist')(process.argv.slice(2), { alias: { c: "config", h: "help" }})
+
+function loadConfig() {
+  try {
+    return new Config(argv.config)
+  } catch(err) {
+    printErrorAndExit(err)
+  }  
+}
 
 function printErrorAndExit(error) {
   if (error instanceof SyntaxError) {
@@ -23,6 +32,7 @@ function printUsageAndExit() {
     "  -h --help          Print this list and exit.",
     "",
     "default config:",
+    "  address: '127.0.0.1'",
     "  port: 8080"
   ].join('\n'))
   process.exit(1)
@@ -36,13 +46,7 @@ function validateArguments(argv) {
 
 validateArguments(argv)
 
-const config = (() => {
-  try {
-    return new Config(argv.config)
-  } catch(err) {
-    printErrorAndExit(err)
-  }  
-})()
-
-const transcoder = new Transcoder(config)
+const config     = loadConfig()
+const logger     = Bunyan.createLogger({name: 'codem-transcode'})
+const transcoder = new Transcoder(config, logger)
 transcoder.boot()

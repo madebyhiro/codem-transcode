@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "minimist": "~1.2.0",
-    "restify": "~4.1.1"
+    "restify": "~4.1.1",
+    "bunyan": "~1.8.1"
   },
   "license": "MIT",
   "scripts": {
