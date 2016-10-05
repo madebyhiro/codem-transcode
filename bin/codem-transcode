@@ -48,6 +48,10 @@ function validateArguments(argv) {
 validateArguments(argv)
 
 const config     = loadConfig()
-const logger     = Bunyan.createLogger({name: 'codem-transcode', level: config.logLevel })
+const logger     = Bunyan.createLogger({
+  name: 'codem-transcode',
+  level: config.logLevel,
+  serializers: { req: Bunyan.stdSerializers.req, res: Bunyan.stdSerializers.res }
+})
 const transcoder = new Transcoder(config, logger)
 transcoder.boot()
