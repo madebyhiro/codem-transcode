@@ -33,7 +33,8 @@ function printUsageAndExit() {
     "",
     "default config:",
     "  address: '127.0.0.1'",
-    "  port: 8080"
+    "  port: 8080",
+    "  logLevel: 'info'"
   ].join('\n'))
   process.exit(1)
 }
@@ -47,6 +48,6 @@ function validateArguments(argv) {
 validateArguments(argv)
 
 const config     = loadConfig()
-const logger     = Bunyan.createLogger({name: 'codem-transcode'})
+const logger     = Bunyan.createLogger({name: 'codem-transcode', level: config.logLevel })
 const transcoder = new Transcoder(config, logger)
 transcoder.boot()
