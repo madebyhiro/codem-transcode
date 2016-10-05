@@ -19,15 +19,20 @@ function printUsageAndExit() {
     "",
     "arguments:",
     "  -c --config        Specify the config file to use. Must be a valid JSON object.",
-    "  -h --help          Print this list and exit."
+    "                     If not specified the default config will be used (listed below).",
+    "  -h --help          Print this list and exit.",
+    "",
+    "default config:",
+    "  port: 8080"
   ].join('\n'))
   process.exit(1)
 }
 
 function validateArguments(argv) {
   if (argv.help)    { printUsageAndExit() }
-  if (!argv.config) { printUsageAndExit() }
 }
+
+// Boot script
 
 validateArguments(argv)
 

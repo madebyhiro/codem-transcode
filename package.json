@@ -25,7 +25,8 @@
     "jasmine": "~2.5.2"
   },
   "dependencies": {
-    "minimist": "~1.2.0"
+    "minimist": "~1.2.0",
+    "restify": "~4.1.1"
   },
   "license": "MIT",
   "scripts": {
