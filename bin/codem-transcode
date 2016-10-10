@@ -34,7 +34,8 @@ function printUsageAndExit() {
     "default config:",
     "  address: '127.0.0.1'",
     "  port: 8080",
-    "  logLevel: 'info'"
+    "  logLevel: 'info'",
+    "  storageBackend: { 'type': 'memory' }"
   ].join('\n'))
   process.exit(1)
 }
