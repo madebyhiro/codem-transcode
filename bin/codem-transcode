@@ -35,7 +35,8 @@ function printUsageAndExit() {
     "  address: '127.0.0.1'",
     "  port: 8080",
     "  logLevel: 'info'",
-    "  storageBackend: { 'type': 'memory' }"
+    "  storageBackend: { 'type': 'memory' }",
+    "  slots: number of available CPU's"
   ].join('\n'))
   process.exit(1)
 }
