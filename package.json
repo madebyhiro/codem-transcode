@@ -28,7 +28,8 @@
     "minimist": "~1.2.0",
     "restify": "~4.1.1",
     "bunyan": "~1.8.1",
-    "codem-ffmpeg": "~0.1.1"
+    "codem-ffmpeg": "~0.1.1",
+    "request": "~2.76.0"
   },
   "license": "MIT",
   "scripts": {
