@@ -6,7 +6,7 @@
 
 `codem-transcode` is an offline video transcoder written in node.js. It
 
-1. Uses ffmpeg for transcoding
+1. Uses FFmpeg for transcoding
 2. Has a simple HTTP API
 3. Is mostly asynchronous
 
@@ -14,7 +14,7 @@
 
 ## Requirements
 
-TBD
+* NodeJS 6.4.0 or higher
 
 ## Installation
 
@@ -34,7 +34,28 @@ Please check for yourself where `npm` installs your packages and script.
 
 ## Configuration
 
-TBD
+`codem-transcode` accepts a config file if you wish to change the default settings. The config file is specified using the `-c` option in the CLI. To see the defaults and options, run:
+
+    # /PATH/TO/TRANSCODER/bin/codem-transcode -h
+    usage: codem-transcode [arguments]
+
+    arguments:
+      -c --config        Specify the config file to use. Must be a valid JSON object.
+                         If not specified the default config will be used (listed below).
+      -h --help          Print this list and exit.
+
+    default config:
+      address: '127.0.0.1'
+      port: 8080
+      logLevel: 'info'
+      storageBackend: { 'type': 'memory' }
+      slots: number of available CPU's
+
+* `address`: the interface to bind the server to, defaults to `127.0.0.1` so local access to the server only.
+* `port`: the port to start the server on, defaults to `8080`.
+* `logLevel`: the level of detail in the logs, defaults to `info`. Valid options are `trace`, `debug`, `info`, `warn` and `error`. You normally want to keep this on `info`.
+* `storageBackend`: the storage backend to use for your jobs. Currently, only one option exists, an in-memory cache. (TBD: Redis and MySQL)
+* `slots`: the number of jobs that can be processed simultaneously. This can be tuned to your own setup and defaults to the number of logical cores in your machine.
 
 ## Usage
 
