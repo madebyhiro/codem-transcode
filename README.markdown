@@ -4,17 +4,17 @@
 
 ## Description
 
-`codem-transcode` is an offline video transcoder written in node.js. It
+`codem-transcode` is an offline video transcoder written in Node.js. It
 
-1. Uses FFmpeg for transcoding
+1. Uses FFmpeg for transcoding by default, but can be extended to use different backends
 2. Has a simple HTTP API
 3. Is mostly asynchronous
 
-`codem-transcode` can be used in conjunction with `codem-schedule` (https://github.com/madebyhiro/codem-schedule) for robust job scheduling and notifications or it can be used stand-alone, with or without a custom scheduler.
+`codem-transcode` can be used in conjunction with `codem-schedule` (https://github.com/madebyhiro/codem-schedule) for job scheduling and notifications, with a custom scheduler or even stand-alone.
 
 ## Requirements
 
-* NodeJS 6.4.0 or higher
+* Node.js 6.4.0 or higher
 
 ## Installation
 
