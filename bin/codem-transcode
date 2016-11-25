@@ -34,6 +34,7 @@ function printUsageAndExit() {
     "default config:",
     "  address: '127.0.0.1'",
     "  port: 8080",
+    "  logFile: standard out default, specify file path if you want to log to file",
     "  logLevel: 'info'",
     "  storageBackend: { 'type': 'memory' }",
     "  slots: number of available CPU's"
@@ -52,8 +53,16 @@ validateArguments(argv)
 const config     = loadConfig()
 const logger     = Bunyan.createLogger({
   name: 'codem-transcode',
-  level: config.logLevel,
+  streams: [
+    config.logStream
+  ],
   serializers: { req: Bunyan.stdSerializers.req, res: Bunyan.stdSerializers.res }
 })
 const transcoder = new Transcoder(config, logger)
 transcoder.boot()
+
+process.on('SIGUSR1', () => {
+  logger.info("Releasing log file.")
+  logger.reopenFileStreams()
+  logger.info("Reopened log file.")
+})

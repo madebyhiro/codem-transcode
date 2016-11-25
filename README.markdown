@@ -47,6 +47,7 @@ Please check for yourself where `npm` installs your packages and script.
     default config:
       address: '127.0.0.1'
       port: 8080
+      logFile: standard out default, specify file path if you want to log to file
       logLevel: 'info'
       storageBackend: { 'type': 'memory' }
       slots: number of available CPU's
