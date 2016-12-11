@@ -1,3 +1,21 @@
+## codem-transcode 0.5.11 (2015/12/02) ##
+
+* Sanitize null values (@brain64bit)
+* Allow HTTPS for notification delivery (@mirion)
+
+## codem-transcode 0.5.10 (2015/09/16) ##
+
+* Increase maxBuffer to 4MB to compensate for older ffmpegs
+
+## codem-transcode 0.5.9 (2015/09/03) ##
+
+* Fix for lingering "processing" jobs. (#42)
+* Encoder options can be an array instead of a string as well (to allow complex filters)
+
+## codem-transcode 0.5.8 (2015/07/05) ##
+
+* Prevent transcoder from returning a negative freeSlot count (@larsfi).
+
 ## codem-transcode 0.5.7 (2015/04/23) ##
 
 * Add option for database port in config (@brain64bit).
