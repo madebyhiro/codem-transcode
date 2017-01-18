@@ -1,3 +1,7 @@
+# (IMPORTANT!) We are currently rewriting codem-transcode to be more future-proof and flexible. Please use the version in the v1.0 branch if you're getting started with codem-transcode.
+
+
+
 # Codem-transcode
 
 * http://github.com/madebyhiro/codem-transcode
