@@ -5,7 +5,7 @@ var os     = require('os'),
 
 var config =  {
       port:                8080,
-      access_log:      	  "/var/local/codem-transcode/log/access.log",
+      access_log:      	  "/var/local/codem-transcode.js/log/access.log",
         "database":        {
             "dialect": "mysql",
             "username": "tcode",
@@ -16,7 +16,7 @@ var config =  {
         slots: 4,
       interface:           "0.0.0.0",
       encoder:             "ffmpeg",
-      scratch_dir:         "/var/local/codem-transcode/scratch/",
+      scratch_dir:         "/var/local/codem-transcode.js/scratch/",
       use_scratch_dir:     true,
       ffprobe:             "ffprobe"
     }

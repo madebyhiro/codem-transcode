@@ -1,0 +1,59 @@
+version: '3.5'
+services:
+  transcodem-1:
+    image: larsfi/codem-transcode
+    ports:
+      - "8085:8080"
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - /videos:/var/local/codem-transcode/videos
+    networks:
+      - transcodem-overlay
+  transcodem-2:
+    image: larsfi/codem-transcode
+    ports:
+      - "8086:8080"
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - /videos:/var/local/codem-transcode/videos
+    networks:
+      - transcodem-overlay
+  transcodem-3:
+    image: larsfi/codem-transcode
+    ports:
+      - "8087:8080"
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - /videos:/var/local/codem-transcode/videos
+    networks:
+      - transcodem-overlay
+  transcodem-4:
+    image: larsfi/codem-transcode
+    ports:
+      - "8088:8080"
+    deploy:
+      mode: replicated
+      replicas: 1
+    networks:
+      - transcodem-overlay
+    volumes:
+      - /videos:/var/local/codem-transcode/videos
+  transcodem-5:
+    image: larsfi/codem-transcode
+    ports:
+      - "8089:8080"
+    deploy:
+      mode: replicated
+      replicas: 1
+    networks:
+      - transcodem-overlay
+    volumes:
+      - /videos:/var/local/codem-transcode/videos
+networks:
+    transcodem-overlay:

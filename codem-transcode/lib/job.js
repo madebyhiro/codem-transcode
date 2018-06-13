@@ -123,7 +123,7 @@ var JobUtils = {
   verifyDatabase: function(callback) {
     JobUtils.getDatabase().getQueryInterface().showAllTables().success(function (tables) {
       if (tables.length > 0 && tables.indexOf('SequelizeMeta') == -1) {
-        logger.log("You appear to be upgrading from an old version of codem-transcode (<0.5). The database handling has " +
+        logger.log("You appear to be upgrading from an old version of codem-transcode.js (<0.5). The database handling has " +
                    "changed, please refer to the upgrade instructions. To prevent data loss the transcoder will now exit.");
         callback("Old database schema detected.");
       } else {
