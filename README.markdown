@@ -1,6 +1,6 @@
-# (IMPORTANT!) We are currently rewriting codem-transcode to be more future-proof and flexible. Please use the version in the v1.0 branch if you're getting started with codem-transcode.
+# IMPORTANT: This project is no longer actively maintained!
 
-
+---
 
 # Codem-transcode
 
